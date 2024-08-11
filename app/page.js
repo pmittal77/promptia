@@ -1,7 +1,7 @@
 const Home = () => {
   return (
-    <div>My Homepage for Promptia</div>
+    <div>My Homepage2 for Promptia</div>
   );
 }
 
-export default Home
+export default Home;
