@@ -8,4 +8,6 @@ const handler = NextAuth({
       clientSecret: '',
     })
   ]
-})
+});
+
+export default handler;
