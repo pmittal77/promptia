@@ -11,11 +11,11 @@ const Nav = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
-    const setProviders1 = async () => {
+    const setProviders = async () => {
       const response = await getProviders();
       setProviders(providers);
     }
-    setProviders1();
+    setProviders();
   }, []);
   return (
     <nav className="flex-between w-full mb-16 pt-3">
