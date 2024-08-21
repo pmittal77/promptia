@@ -6,16 +6,19 @@ import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
-  const isUserLoggedIn = true;
+  const isUserLoggedIn = false;
+  const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
+  console.log({ providers });
+
   useEffect(() => {
-    const setProviders = async () => {
+    const setupProviders = async () => {
       const response = await getProviders();
-      setProviders(providers);
+      setProviders(response);
     }
-    setProviders();
+    setupProviders();
   }, []);
   return (
     <nav className="flex-between w-full mb-16 pt-3">
@@ -29,9 +32,10 @@ const Nav = () => {
         />
         <p className="logo_text">Promptia</p>
       </Link>
+      {/* {alert(providers)} */}
       {/* { Desktop View } */}
       <div className="sm:flex hidden">
-        {isUserLoggedIn ?
+        {session?.user ?
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">Create Post</Link>
             <button type="button" className="outline_btn" onClick={signOut}>
@@ -39,7 +43,7 @@ const Nav = () => {
             </button>
             <Link href="/profile">
               <Image
-                src="/assets/images/profile-blank.png"
+                src={session?.user?.image}
                 width={30}
                 height={30}
                 className="rounded-full"
@@ -68,10 +72,11 @@ const Nav = () => {
 
       {/* Mobile Version */}
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <>
+            {session.user.name}
             <Image
-              src="/assets/images/profile-blank.png"
+              src={session?.user?.image}
               width={30}
               height={30}
               className="rounded-full"
@@ -88,7 +93,7 @@ const Nav = () => {
                   Profile
                 </Link>
                 <Link
-                  href="/create_prompt"
+                  href="/create-prompt"
                   className="dropdown_link"
                   onClick={() => setToggleDropdown(false)}
                 >
