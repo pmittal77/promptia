@@ -19,12 +19,13 @@ const CreatePrompt = () => {
   const createPrompt = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+    // console.log(`Post Created by ${session?.user.id}`);
     try {
       const response = await fetch('/api/prompt/new',
         {
           method: 'POST',
           body: JSON.stringify({
-            user: session?.user.id,
+            userId: session?.user.id,
             prompt: post.prompt,
             tag: post.tag,
           }),
@@ -45,8 +46,8 @@ const CreatePrompt = () => {
   return (
     <Form
       type="Create"
-      post={post}
-      setPost={setPost}
+      prompt={post}
+      setPrompt={setPost}
       submitting={submitting}
       handleSubmit={createPrompt}
     />
