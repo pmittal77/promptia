@@ -31,6 +31,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.js",
     ".next/types/**/*.ts",
     "app/layout.jsx",
     "app/page.jsx"
