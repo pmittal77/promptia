@@ -1,4 +1,4 @@
-import PromptCard from "@components/PromptCard";
+import PromptCard from "./components/PromptCard";
 
 const Profile = ({ name, desc, data, handlePromptEdit, handlePromptDelete }) => {
   console.log({ data });
